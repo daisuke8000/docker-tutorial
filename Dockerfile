@@ -101,3 +101,11 @@ RUN mkdir created_in_Dockerfile
 #RUN mkdir created_in_Dockerfile
 #>> docker run -it -u $(id -u):$(id -g) -v ******:/created_in_run dd131421f856 bash
 #------------------------------------------
+
+#<<docker -p option>>
+#>> "-p"オプションを使用することでホストのポートをコンテナのポートにつなげる
+#   "-p <host_port>:<container_port>"の形にする
+#   host_portは特に指定こそしない（1234とかでもOK）
+#------------------------------------------
+#>> docker run -it -p 8888:8888 --rm jupyter/datascience-notebook bash
+#------------------------------------------
