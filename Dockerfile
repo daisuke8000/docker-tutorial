@@ -1,7 +1,7 @@
 FROM ubuntu:latest
-WORKDIR /sample
-RUN touch sample_file
-CMD ["/bin/bash"]
+#WORKDIR /sample
+RUN mkdir new_dir
+#CMD ["/bin/bash"]
 
 #<RUN>
 #>> RUNはDockerFileのレイヤー部分。RUN毎にレイヤーが追加される。
@@ -72,4 +72,18 @@ CMD ["/bin/bash"]
 #WORKDIR /sample
 #RUN touch sample_file
 #CMD ["/bin/bash"]
+#------------------------------------------
+
+#<<docker -v option>>
+#>> "-v"オプションを使用することでhostファイルシステムをコンテナにマウントする
+#   host側にファイルシステムを置く理由として、コンテナにファイルを作成するとコンテナ自体が大きくなる
+#   コンテナは誰かに渡したり、共有するものであるためその使い方はあまり望ましくない。そのため、実行環境として利用するのが従来の使い方
+#   ******の箇所にはファイルパスを記述。その後に「:」 で区切り、マウントするフォルダを記述(今回はnew_dir)
+#   マウントするフォルダは作成していなくても、docker run時に記述すれば作成される
+#------------------------------------------
+#FROM ubuntu:latest
+#RUN mkdir new_dir
+#>> docker run -it -v ******:/new_dir "build時のid" bash
+#>> docker run -it -v ******:/hogehoge_dir "build時のid" bash(マウントするフォルダは事前になくても大丈夫)
+#
 #------------------------------------------
